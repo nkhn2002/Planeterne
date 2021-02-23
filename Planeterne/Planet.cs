@@ -6,77 +6,67 @@ using System.Threading.Tasks;
 
 namespace Planeterne
 {
-    class Planet
+    public class Planet
     {
-        private List<string> Planets;
-        private List<string> PlanetsMeanTemp;
-        private List<string> PlanetsDiameter;
+        public static List<Planet> Planets = new List<Planet>();
 
-        public Planet()
+        public static List<Planet> PlanetsMeanTemp = new List<Planet>();
+
+        public static List<Planet> PlanetsDiameter = new List<Planet>();
+
+        public string Name { get; set; }
+        public double Mass { get; set; }
+        public double Diameter { get; set; }
+        public double Density { get; set; }
+        public double Gravity { get; set; }
+        public double RotationPeriod { get; set; }
+        public double LengthOfDays { get; set; }
+        public double DistanceFromSun { get; set; }
+        public double OrbitalPeriod { get; set; }
+        public double OrbitalVelocity { get; set; }
+        public double MeanTemprature { get; set; }
+        public double NumberOfMoons { get; set; }
+        public bool RingSystem { get; set; }
+
+        public Planet(string name, double mass, double diameter, double density, double gravity, double rotationPeriod, double lengthOfDays, double distanceFromSun, double orbitalPeriod, double orbitalVelocity, double meanTemp, double numberOfMoons, bool ringSystem)
         {
-            Planets = new List<string>();
-
-            // Add planets to list
-            this.Planets.Add("Merkur");
-            this.Planets.Add("Jorden");
-            this.Planets.Add("Mars");
-            this.Planets.Add("Jupiter");
-            this.Planets.Add("Saturn");
-            this.Planets.Add("Uranus");
-            this.Planets.Add("Neptun");
-            this.Planets.Add("Pluto");
-
-            // Add venus after Mekur and before Earth
-            this.Planets.Insert(1, "Venus");
-
-            // Remove Pluto since it's not a planet
-            this.Planets.Remove("Pluto");
-
-            // Add pluto again
-            this.Planets.Add("Pluto");
-
-            // Planets with mean temp
-            PlanetsMeanTemp = new List<string>();
-
-            this.PlanetsMeanTemp.Add("Mars");
-            this.PlanetsMeanTemp.Add("Jupiter");
-            this.PlanetsMeanTemp.Add("Saturn");
-            this.PlanetsMeanTemp.Add("Uranus");
-            this.PlanetsMeanTemp.Add("Neptun");
-            this.PlanetsMeanTemp.Add("Pluto");
-
-            // Planets with diameter over 10000KM and under 50000KM
-            PlanetsDiameter = new List<string>();
-
-            this.PlanetsDiameter.Add("Venus");
-            this.PlanetsDiameter.Add("Earth");
-            this.PlanetsDiameter.Add("Neptune");
+            this.Name = name;
+            this.Mass = mass;
+            this.Diameter = diameter;
+            this.Density = density;
+            this.Gravity = gravity;
+            this.RotationPeriod = rotationPeriod;
+            this.LengthOfDays = lengthOfDays;
+            this.DistanceFromSun = distanceFromSun;
+            this.OrbitalPeriod = orbitalPeriod;
+            this.OrbitalVelocity = orbitalVelocity;
+            this.MeanTemprature = meanTemp;
+            this.NumberOfMoons = numberOfMoons;
+            this.RingSystem = ringSystem;
         }
 
-        public List<string> GetPlanetNames()
+        public static void RemovePluto(string name)
         {
-            return Planets;
-        }
-
-        public List<string> MeanTemp()
-        {
-            return PlanetsMeanTemp;
-        }
-
-        public List<string> PlanetDiameter()
-        {
-            return PlanetsDiameter;
-        }
-
-        public void RemovePlanets()
-        {
-            Planets = new List<string>();
-
-            // Remove planets
-            for (int i = 0; i < Planets.Count; i++)
+            foreach(Planet item in Planets)
             {
-                this.Planets.Remove(Planets[i]);
+                if(item.Name == name)
+                {
+                    Planets.Remove(item);
+                    break;
+                }
             }
+        }
+
+        public static void AddPluto()
+        {
+            Planets.Add(new Planet("Pluto", 0.0146, 2370, 2095, 0.7, -153.3, 153.3, 5906.4, 90.56, 4.7, -225, 5, true));
+        }
+
+        public static void RemovePlanets()
+        {
+            Planets.Clear();
+            PlanetsMeanTemp.Clear();
+            PlanetsDiameter.Clear();
         }
     }
 }
