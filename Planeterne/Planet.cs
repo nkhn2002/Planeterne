@@ -71,6 +71,7 @@ namespace Planeterne
         public void RemovePlanets()
         {
             Planets = new List<string>();
+
             // Remove planets
             for (int i = 0; i < Planets.Count; i++)
             {
